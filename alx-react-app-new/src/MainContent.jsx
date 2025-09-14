@@ -7,5 +7,4 @@
     </main>
   );
 }
-
 export default MainContent;

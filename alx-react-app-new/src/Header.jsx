@@ -5,5 +5,4 @@
     </header>
   );
 }
-
 export default Header;
