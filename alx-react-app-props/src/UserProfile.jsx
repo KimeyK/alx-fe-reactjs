@@ -1,9 +1,8 @@
-﻿import React, { useContext } from "react";
-import DefaultUserContext, { UserContext as NamedUserContext } from "./UserContext";
+﻿import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
 function UserProfile() {
-  const Ctx = DefaultUserContext || NamedUserContext;
-  const userData = useContext(Ctx);
+  const userData = useContext(UserContext);
 
   return (
     <div>
