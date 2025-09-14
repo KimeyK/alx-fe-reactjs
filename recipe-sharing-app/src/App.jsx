@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import {
-  BrowserRouter as Router,   // ✅ ensures "Router"
+  BrowserRouter as Router,
   Routes,
   Route,
-  Link
-} from "react-router-dom";    // ✅ ensures "react-router-dom"
+  Link,
+} from "react-router-dom";
 import { useRecipeStore } from "./components/recipeStore";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeList from "./components/RecipeList";
 import RecipeDetail from "./components/RecipeDetail";
+import SearchBar from "./components/SearchBar"; // <-- add
 
 function App() {
   const setRecipes = useRecipeStore((s) => s.setRecipes);
@@ -36,6 +37,7 @@ function App() {
             element={
               <>
                 <AddRecipeForm />
+                <SearchBar />        {/* <-- add */}
                 <RecipeList />
               </>
             }
