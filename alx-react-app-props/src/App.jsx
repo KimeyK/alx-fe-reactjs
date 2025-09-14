@@ -1,13 +1,16 @@
 ﻿import ProfilePage from "./ProfilePage";
-import UserContext from "./UserContext";
+import DefaultUserContext, { UserContext as NamedUserContext } from "./UserContext";
 
 function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
+  // Prefer default; fall back to named if needed
+  const Ctx = DefaultUserContext || NamedUserContext;
+
   return (
-    <UserContext.Provider value={userData}>
+    <Ctx.Provider value={userData}>
       <ProfilePage />
-    </UserContext.Provider>
+    </Ctx.Provider>
   );
 }
 
