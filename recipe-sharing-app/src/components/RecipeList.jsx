@@ -13,7 +13,7 @@ const RecipeList = () => {
       {recipes.map((recipe) => (
         <div key={recipe.id} style={{ border: "1px solid #ddd", padding: "12px", borderRadius: 8 }}>
           <h3 style={{ margin: 0 }}>
-            <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+            <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
           </h3>
           <p style={{ marginTop: 8 }}>{recipe.description}</p>
         </div>

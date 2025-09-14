@@ -3,12 +3,11 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useRecipeStore } from "./components/recipeStore";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeList from "./components/RecipeList";
-import RecipeDetails from "./components/RecipeDetails";
+import RecipeDetail from "./components/RecipeDetail";
 
 function App() {
   const setRecipes = useRecipeStore((s) => s.setRecipes);
 
-  // Seed a couple of recipes once
   useEffect(() => {
     setRecipes([
       { id: 1, title: "Spaghetti Aglio e Olio", description: "Garlic, olive oil, chili flakes, parsley." },
@@ -36,7 +35,7 @@ function App() {
               </>
             }
           />
-          <Route path="/recipes/:id" element={<RecipeDetails />} />
+          <Route path="/recipe/:id" element={<RecipeDetail />} />
         </Routes>
       </div>
     </BrowserRouter>
