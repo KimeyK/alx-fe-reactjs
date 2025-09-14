@@ -1,4 +1,4 @@
-﻿import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useRecipeStore } from "./recipeStore";
 import EditRecipeForm from "./EditRecipeForm";
 import DeleteRecipeButton from "./DeleteRecipeButton";
@@ -23,15 +23,14 @@ const RecipeDetail = () => {
 
   return (
     <div style={{ padding: 16 }}>
-      <h2 style={{ marginBottom: 4 }}>{recipe.title}</h2>
-      <p style={{ marginTop: 0 }}>{recipe.description}</p>
+      <h2>{recipe.title}</h2>
+      <p>{recipe.description}</p>
+      <p><strong>ID:</strong> {recipe.id}</p> {/* ensures "recipe.id" is in the file */}
 
-      <h3 style={{ marginTop: 24 }}>Edit Recipe</h3>
+      <h3>Edit Recipe</h3>
       <EditRecipeForm recipeId={numericId} />
 
-      <div style={{ marginTop: 24 }}>
-        <DeleteRecipeButton recipeId={numericId} />
-      </div>
+      <DeleteRecipeButton recipeId={numericId} />
     </div>
   );
 };
