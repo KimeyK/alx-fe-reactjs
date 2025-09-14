@@ -1,7 +1,6 @@
-﻿import React from "react";
+﻿import { createContext } from "react";
 
-// Named export (string the checker often searches for)
-export const UserContext = React.createContext();
+const UserContext = createContext();
 
-// Default export so we can import UserContext by default too
-export default UserContext;
+export { UserContext };         // named export
+export default UserContext;     // default export
