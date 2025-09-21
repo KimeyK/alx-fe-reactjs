@@ -1,22 +1,32 @@
-﻿import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import { useState } from "react";
+import { searchUsers, fetchUserDetails } from "../services/githubService";
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
+  const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errored, setErrored] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setErrored(false);
-    setUser(null);
-    if (!username.trim()) return;
-
     setLoading(true);
+    setErrored(false);
+    setResults([]);
     try {
-      const data = await fetchUserData(username.trim());
-      setUser(data);
+      const data = await searchUsers({ username, location, minRepos });
+      const detailed = await Promise.all(
+        data.items.map(async (u) => {
+          try {
+            const d = await fetchUserDetails(u.login);
+            return { ...u, ...d };
+          } catch {
+            return u;
+          }
+        })
+      );
+      setResults(detailed);
     } catch {
       setErrored(true);
     } finally {
@@ -25,47 +35,50 @@ const Search = () => {
   };
 
   return (
-    <div style={{ maxWidth: 720, margin: "0 auto" }}>
-      <form onSubmit={onSubmit} style={{ display: "flex", gap: 8 }}>
+    <div className="max-w-4xl mx-auto">
+      <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-xl bg-white border">
         <input
-          type="text"
+          className="border rounded-md px-3 py-2"
+          placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter GitHub username (e.g. torvalds)"
-          style={{ flex: 1, padding: 8 }}
         />
-        <button type="submit">Search</button>
+        <input
+          className="border rounded-md px-3 py-2"
+          placeholder="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <input
+          type="number"
+          className="border rounded-md px-3 py-2"
+          placeholder="Min Repos"
+          value={minRepos}
+          onChange={(e) => setMinRepos(e.target.value)}
+        />
+        <div className="md:col-span-3">
+          <button type="submit" className="px-4 py-2 rounded-md bg-blue-600 text-white">
+            Search
+          </button>
+        </div>
       </form>
 
-      <div style={{ marginTop: 20 }}>
+      <div className="mt-6">
         {loading && <p>Loading...</p>}
-        {!loading && errored && <p>Looks like we cant find the user</p>}
-        {!loading && !errored && user && (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 16,
-              border: "1px solid #e5e5e5",
-              padding: 16,
-              borderRadius: 10,
-            }}
-          >
-            <img
-              src={user.avatar_url}
-              alt={`${user.login} avatar`}
-              width="80"
-              height="80"
-              style={{ borderRadius: "50%" }}
-            />
+        {errored && <p>Looks like we cant find the user</p>}
+        {results.map((u) => (
+          <div key={u.id} className="flex items-center gap-4 p-4 border rounded mb-3">
+            <img src={u.avatar_url} alt="avatar" className="w-16 h-16 rounded-full" />
             <div>
-              <h2 style={{ margin: 0 }}>{user.name ? user.name : user.login}</h2>
-              <a href={user.html_url} target="_blank" rel="noreferrer">
-                View GitHub Profile
+              <h2 className="font-bold">{u.login}</h2>
+              {u.location && <p>📍 {u.location}</p>}
+              {u.public_repos !== undefined && <p>Repos: {u.public_repos}</p>}
+              <a href={u.html_url} className="text-blue-600" target="_blank" rel="noreferrer">
+                View Profile
               </a>
             </div>
           </div>
-        )}
+        ))}
       </div>
     </div>
   );
