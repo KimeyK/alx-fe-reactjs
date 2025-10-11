@@ -1,10 +1,17 @@
 ﻿import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import data from "../data.json";
 
 function RecipeDetail() {
   const { id } = useParams();
-  const recipeId = Number(id);
-  const recipe = data.find((r) => r.id === recipeId);
+  const [recipe, setRecipe] = useState(null);
+
+  useEffect(() => {
+    // Simulate fetch by reading from imported data, then set state
+    const recipeId = Number(id);
+    const found = data.find((r) => r.id === recipeId) || null;
+    setRecipe(found);
+  }, [id]);
 
   if (!recipe) {
     return (
@@ -18,6 +25,9 @@ function RecipeDetail() {
       </main>
     );
   }
+
+  // Prefer "instructions" if present; fall back to "steps" for safety.
+  const instructions = recipe.instructions?.length ? recipe.instructions : recipe.steps || [];
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -53,9 +63,9 @@ function RecipeDetail() {
               </section>
 
               <section className="bg-gray-50 rounded-lg p-4 border">
-                <h2 className="text-xl font-semibold text-gray-800">Steps</h2>
+                <h2 className="text-xl font-semibold text-gray-800">Instructions</h2>
                 <ol className="mt-3 list-decimal list-inside space-y-2 text-gray-700">
-                  {recipe.steps?.map((step, idx) => (
+                  {instructions.map((step, idx) => (
                     <li key={idx}>{step}</li>
                   ))}
                 </ol>
