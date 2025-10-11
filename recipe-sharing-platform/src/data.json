@@ -2,25 +2,85 @@
   {
     "id": 1,
     "title": "Spaghetti Carbonara",
-    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=1200&auto=format&fit=crop"
+    "summary": "A classic Italian pasta dish with eggs, pecorino, bacon, and black pepper.",
+    "image": "https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=1200&auto=format&fit=crop",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta/bacon",
+      "2 eggs + 1 yolk",
+      "50g pecorino or parmesan, grated",
+      "Freshly ground black pepper",
+      "Salt"
+    ],
+    "steps": [
+      "Boil pasta in salted water until al dente.",
+      "Fry pancetta until crisp; set aside.",
+      "Whisk eggs, yolk, cheese, and pepper in a bowl.",
+      "Drain pasta (reserve some water).",
+      "Toss hot pasta with pancetta and egg mixture off heat.",
+      "Loosen with pasta water; season and serve immediately."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://images.unsplash.com/photo-1604908554049-89e9f9e1a6f6?q=80&w=1200&auto=format&fit=crop"
+    "summary": "Grilled chicken in a creamy spiced tomato sauce.",
+    "image": "https://images.unsplash.com/photo-1604908554049-89e9f9e1a6f6?q=80&w=1200&auto=format&fit=crop",
+    "ingredients": [
+      "500g chicken breast, cubed",
+      "1 cup plain yogurt",
+      "1 tbsp garam masala",
+      "1 tsp cumin, 1 tsp paprika",
+      "1 onion, 3 cloves garlic, 1 inch ginger",
+      "400g crushed tomatoes",
+      "1/2 cup cream, salt, oil"
+    ],
+    "steps": [
+      "Marinate chicken in yogurt and spices 30–60 minutes.",
+      "Grill or pan-sear chicken until charred; set aside.",
+      "Sauté onion, ginger, garlic until soft.",
+      "Add tomatoes; simmer 10 minutes.",
+      "Stir in cream; add chicken; simmer 5 minutes.",
+      "Adjust seasoning; serve with rice/naan."
+    ]
   },
   {
     "id": 3,
     "title": "Avocado Toast",
-    "summary": "Toasted sourdough topped with smashed avocado, chili flakes, and lemon.",
-    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop"
+    "summary": "Sourdough with smashed avocado, chili flakes, and lemon.",
+    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop",
+    "ingredients": [
+      "2 slices sourdough, toasted",
+      "1 ripe avocado",
+      "1 tsp lemon juice",
+      "Chili flakes, salt, pepper",
+      "Olive oil (optional)"
+    ],
+    "steps": [
+      "Mash avocado with lemon, salt, pepper.",
+      "Spread on toast; drizzle oil.",
+      "Finish with chili flakes; serve immediately."
+    ]
   },
   {
     "id": 4,
     "title": "Beef Ramen Bowl",
-    "summary": "Comforting ramen with soy-marinated beef, soft egg, and scallions.",
-    "image": "https://images.unsplash.com/photo-1604908176997-431f99f3a2d1?q=80&w=1200&auto=format&fit=crop"
+    "summary": "Soy-marinated beef with ramen, soft egg, and scallions.",
+    "image": "https://images.unsplash.com/photo-1604908176997-431f99f3a2d1?q=80&w=1200&auto=format&fit=crop",
+    "ingredients": [
+      "200g ramen noodles",
+      "200g thinly sliced beef",
+      "2 cups broth",
+      "2 eggs",
+      "2 tbsp soy sauce, 1 tbsp mirin",
+      "Scallions, sesame oil"
+    ],
+    "steps": [
+      "Marinate beef in soy + mirin 10 minutes; sear quickly.",
+      "Boil eggs 6–7 minutes; peel.",
+      "Cook ramen in broth.",
+      "Assemble bowl with noodles, broth, beef, halved eggs.",
+      "Top with scallions, sesame oil."
+    ]
   }
 ]

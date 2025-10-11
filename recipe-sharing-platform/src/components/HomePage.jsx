@@ -1,11 +1,11 @@
 ﻿import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import data from "../data.json";
 
 function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // simulate async fetch (you can replace with real fetch later)
     const t = setTimeout(() => setRecipes(data), 150);
     return () => clearTimeout(t);
   }, []);
@@ -22,7 +22,6 @@ function HomePage() {
           </p>
         </header>
 
-        {/* Responsive grid of recipe cards */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {recipes.map((r) => (
             <article
@@ -40,12 +39,12 @@ function HomePage() {
                 <p className="mt-2 text-sm text-gray-600">{r.summary}</p>
 
                 <div className="mt-4">
-                  <a
-                    href={"/recipe/" + r.id}
+                  <Link
+                    to={`/recipe/${r.id}`}
                     className="inline-block text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
                   >
                     View Details →
-                  </a>
+                  </Link>
                 </div>
               </div>
             </article>
