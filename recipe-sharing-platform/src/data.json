@@ -1,0 +1,26 @@
+﻿[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://images.unsplash.com/photo-1523986371872-9d3ba2e2f642?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://images.unsplash.com/photo-1604908554049-89e9f9e1a6f6?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 3,
+    "title": "Avocado Toast",
+    "summary": "Toasted sourdough topped with smashed avocado, chili flakes, and lemon.",
+    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    "id": 4,
+    "title": "Beef Ramen Bowl",
+    "summary": "Comforting ramen with soy-marinated beef, soft egg, and scallions.",
+    "image": "https://images.unsplash.com/photo-1604908176997-431f99f3a2d1?q=80&w=1200&auto=format&fit=crop"
+  }
+]
