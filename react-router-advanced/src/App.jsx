@@ -8,16 +8,17 @@ import Profile from "./components/Profile.jsx";
 import ProfileDetails from "./components/ProfileDetails.jsx";
 import ProfileSettings from "./components/ProfileSettings.jsx";
 import Login from "./components/Login.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
-// ---- Simple Auth Context ----
+// --- Simple Auth Context for protected routes ---
 const AuthContext = createContext(null);
+
 export function useAuth() {
   return useContext(AuthContext);
 }
 
 function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   const login = () => setIsAuthenticated(true);
   const logout = () => setIsAuthenticated(false);
 
@@ -28,22 +29,31 @@ function AuthProvider({ children }) {
   );
 }
 
+// --- Protected route wrapper ---
+function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useAuth();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <Routes>
-        {/* Shared layout with header/nav */}
+        {/* Shared layout with top nav */}
         <Route element={<Layout />}>
           {/* Home */}
           <Route index element={<Home />} />
 
-          {/* Blog list */}
+          {/* Blog listing */}
           <Route path="blog" element={<Blog />} />
 
           {/* Dynamic route: /posts/:postId */}
           <Route path="posts/:postId" element={<Post />} />
 
-          {/* Protected parent with nested routes under /profile */}
+          {/* Protected parent route with nested routes inside Profile */}
           <Route
             path="profile"
             element={
@@ -52,7 +62,7 @@ export default function App() {
               </ProtectedRoute>
             }
           >
-            {/* Nested routes */}
+            {/* Nested routes under /profile */}
             <Route index element={<ProfileDetails />} />
             <Route path="settings" element={<ProfileSettings />} />
           </Route>
