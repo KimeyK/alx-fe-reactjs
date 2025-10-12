@@ -1,24 +1,18 @@
 ﻿import { useState } from "react";
 
 export default function RegistrationForm() {
-  const [form, setForm] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ type: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
 
-  const onChange = (e) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  };
-
   const validate = () => {
     const next = {};
-    if (!form.username.trim()) next.username = "Username is required";
-    if (!form.email.trim()) next.email = "Email is required";
-    if (!form.password.trim()) next.password = "Password is required";
+    if (!username.trim()) next.username = "Username is required";
+    if (!email.trim()) next.email = "Email is required";
+    if (!password.trim()) next.password = "Password is required";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -26,20 +20,20 @@ export default function RegistrationForm() {
   const onSubmit = async (e) => {
     e.preventDefault();
     setStatus({ type: "", message: "" });
-
     if (!validate()) return;
 
     try {
       setSubmitting(true);
-      // Mock API: JSONPlaceholder
       const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ username, email, password }),
       });
       if (!res.ok) throw new Error("Request failed");
       setStatus({ type: "success", message: "Registered successfully (mock)!" });
-      setForm({ username: "", email: "", password: "" });
+      setUsername("");
+      setEmail("");
+      setPassword("");
     } catch (err) {
       setStatus({ type: "error", message: "Registration failed (mock)." });
     } finally {
@@ -73,8 +67,8 @@ export default function RegistrationForm() {
           <input
             className={inputClass}
             name="username"
-            value={form.username}
-            onChange={onChange}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             placeholder="jane_doe"
           />
           {errors.username && (
@@ -88,8 +82,8 @@ export default function RegistrationForm() {
             className={inputClass}
             type="email"
             name="email"
-            value={form.email}
-            onChange={onChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="jane@example.com"
           />
           {errors.email && (
@@ -103,8 +97,8 @@ export default function RegistrationForm() {
             className={inputClass}
             type="password"
             name="password"
-            value={form.password}
-            onChange={onChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="••••••••"
           />
           {errors.password && (
