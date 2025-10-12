@@ -31,7 +31,6 @@ export default function Layout() {
       </header>
 
       <main style={{ padding: 24 }}>
-        {/* Where child routes render */}
         <Outlet />
       </main>
     </div>
