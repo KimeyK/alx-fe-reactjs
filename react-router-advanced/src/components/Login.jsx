@@ -1,25 +1,20 @@
-import { useNavigate, Navigate } from "react-router-dom";
-import { useAuth } from "../App.jsx";
+// src/components/Login.jsx
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Login() {
-  const { isAuthenticated, login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
-  if (isAuthenticated) {
-    return <Navigate to="/profile" replace />;
-  }
-
-  const onLogin = (e) => {
-    e.preventDefault();
-    login();
-    navigate("/profile", { replace: true });
+  const doLogin = () => {
+    localStorage.setItem("isAuthed", "true");
+    navigate(from, { replace: true });
   };
 
   return (
-    <form onSubmit={onLogin} style={{ maxWidth: 360 }}>
-      <h1>Login</h1>
-      <p>Click login to simulate authentication.</p>
-      <button type="submit">Login</button>
-    </form>
+    <section style={{ padding: 24 }}>
+      <h2>Login</h2>
+      <button onClick={doLogin}>Mock Login</button>
+    </section>
   );
 }
