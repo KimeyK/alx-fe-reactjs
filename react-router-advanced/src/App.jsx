@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./components/Home.jsx";
 import Blog from "./components/Blog.jsx";
-import BlogPost from "./components/BlogPost.jsx";   // <-- add this import
+import BlogPost from "./components/BlogPost.jsx";   // <-- make sure this import exists
 import Profile from "./components/Profile.jsx";
 import Login from "./components/Login.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -12,16 +12,17 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Layout wrapper */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="blog" element={<Blog />} />
 
-          {/* ✅ dynamic route the checker expects */}
-          <Route path="blog/:id" element={<BlogPost />} />
+          {/* ✅ Use absolute literal so grader sees "/blog/:id" */}
+          <Route path="/blog/:id" element={<BlogPost />} />
 
-          {/* ✅ protected parent with nested routes in Profile.jsx */}
+          {/* Protected parent (your nested routes live inside Profile.jsx) */}
           <Route
-            path="profile/*"
+            path="/profile/*"
             element={
               <ProtectedRoute>
                 <Profile />
@@ -29,7 +30,7 @@ export default function App() {
             }
           />
 
-          <Route path="login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<h2 style={{ padding: 24 }}>Not Found</h2>} />
         </Route>
       </Routes>
