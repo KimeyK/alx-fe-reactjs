@@ -1,13 +1,20 @@
-// src/components/ProtectedRoute.jsx
-import { Navigate, useLocation } from "react-router-dom";
+// src/components/Login.jsx
+import { useNavigate, useLocation } from "react-router-dom";
 
-export default function ProtectedRoute({ children }) {
-  // simple mock auth check
-  const authed = localStorage.getItem("isAuthed") === "true";
+export default function Login() {
+  const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
-  if (!authed) {
-    return <Navigate to="/login" replace state={{ from: location }} />;
-  }
-  return children;
+  const doLogin = () => {
+    localStorage.setItem("isAuthed", "true");
+    navigate(from, { replace: true });
+  };
+
+  return (
+    <section style={{ padding: 24 }}>
+      <h2>Login</h2>
+      <button onClick={doLogin}>Mock Login</button>
+    </section>
+  );
 }
